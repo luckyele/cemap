@@ -8,7 +8,8 @@
 			html{height:100%;}
 			body{height:100%;margin:0px;padding:0px;}
 			#container{margin:10px;float:left;height:100%;width: 80%;}  
-			#select{margin:10px;}
+			#select{margin:10px; padding:10px 0 0 0;}
+			#selectArea{margin:10px;}
 		</style>  
 		<script type="text/javascript" 
 		    src="http://api.map.baidu.com/api?v=2.0&ak=OQUXHOaGqzmKDZ2HfYA80SGU35yzrWcp">
@@ -19,27 +20,43 @@
 		<span id="select">
 		输入省、直辖市或县名称：
 		<input type="text" id="districtName" style="width:80px" value="合肥市">
-		<input type="button" onclick="getBoundary()" value="获取轮廓">
+		<input type="button" onclick="displayFacilities()" value="显示设施">
 		<input type="button" onclick="drawMarker()" value="显示标注">
 		<input type="button" onclick="removeMarker()" value="取消标注">
+	
 		</span>
 			
-	
+		<div id="selectArea">
+			<input name="all_select" type="checkbox" onclick="all_select()"value="0" /><label>全选</label>
+			<input name="all_cancel" type="checkbox" value="0" /><label>全部取消</label>
+			<input name="mass_center" type="checkbox" value="0" /><label>文化馆</label>
+			<input name="library" type="checkbox" value="0" />	<label>图书馆</label>
+			<input name="museum" type="checkbox" value="0" />	<label>博物馆</label>
+			<input name="station" type="checkbox" value="0" />	<label>文化站</label>
+		</div>>
 		<div id="container"></div> 
 		
 		<script type="text/javascript"> 
-		
+			function all_select(){
+
+			}
+
+			function displayFacilities(){
+				getBoundary();
+				drawMarker();
+			}
+
 			function removeMarker(){
 				var allMarkers = map.getOverlays();
 				for(var i = 0; i < allMarkers.length; i++) {
-					map.removeOverlay(allOverlay[i]);
+					map.removeOverlay(allMarkers[i]);
 				}
 			}
 			function getBoundary(){       
 				var bdary = new BMap.Boundary();
 				var name = document.getElementById("districtName").value;
 				bdary.get(name, function(rs){       
-					map.clearOverlays();        
+					//map.clearOverlays();        
 					var count = rs.boundaries.length; 
 					for(var i = 0; i < count; i++){
 						var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight:2,fillColor:"none",strokeColor:"#ff0000"}); 
@@ -57,7 +74,8 @@
 				{name:"蜀山区文化馆",point:"117.250161,31.833981"},
 				{name:"肥西县文化馆",point:"117.183038,31.718728"},
 				{name:"瑶海区文化馆",point:"117.31265,31.871389"},
-				{name:"巢湖市文化馆",point:"117.871373,31.604097"}];
+				{name:"巢湖市文化馆",point:"117.871373,31.604097"}
+				];
 
 				for (var i = 0; i < points.length; i++) {
 					x = points[i].point.split(',')[0];
@@ -69,7 +87,6 @@
 					console.log(i+" add marker");
 				}
 			}
-
  			
 			var map = new BMap.Map("container");
 			var point = new BMap.Point(117.288463,31.867939);
@@ -78,10 +95,6 @@
 			map.addControl(new BMap.NavigationControl())
 			var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
 			map.addControl(ctrl_nav);
-
-
-				
-					
 	       
 		</script>  
 	</body>  
