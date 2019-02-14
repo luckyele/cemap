@@ -26,19 +26,45 @@
 		<input type="button" onclick="drawMarker()" value="显示标注">
 		<input type="button" onclick="removeMarker()" value="取消标注">
 		<input type="button" onclick="readJson()" value="读取数据">
-	
+		<input type="button" onclick="checkStatus()" value="check数据">
 		</span>
 			
 		<div id="selectArea">
-			<input name="mass_center" type="checkbox" value="0" /><label>文化馆</label>
-			<input name="library" type="checkbox" value="0" />	<label>图书馆</label>
-			<input name="museum" type="checkbox" value="0" />	<label>博物馆</label>
-			<input name="station" type="checkbox" value="0" />	<label>文化站</label>
+			<input id="mass_center" type="checkbox" value="0" /><label>文化馆</label>
+			<input id="library" type="checkbox" value="0" />	<label>图书馆</label>
+			<input id="museum" type="checkbox" value="0" />	<label>博物馆</label>
+			<input id="station" type="checkbox" value="0" />	<label>文化站</label>
 		</div>
 		<div id="container"></div> 
 
 
 		<script type="text/javascript">
+			function checkStatus(){
+
+				var FLAG_MASS = 1
+				var FLAG_LIB = 2
+				var FLAG_MU = 4
+				var FLAG_ST = 8
+				var flag = 0
+
+				var v1 = document.getElementById("mass_center");
+				var v2 = document.getElementById("library");
+				var v3 = document.getElementById("museum");
+				var v4 = document.getElementById("station");
+
+				if (v1.checked)
+					flag |= FLAG_MASS;
+				if (v2.checked)
+					flag |= FLAG_LIB;
+				if (v3.checked)
+					flag |= FLAG_MU;
+				if (v4.checked)
+					flag |= FLAG_ST;
+				
+				return flag;
+			}
+
+
 			function displayFacilities(){
 				getBoundary();
 				drawMarker();
@@ -50,6 +76,7 @@
 					map.removeOverlay(allMarkers[i]);
 				}
 			}
+
 			function getBoundary(){       
 				var bdary = new BMap.Boundary();
 				var name = document.getElementById("districtName").value;
