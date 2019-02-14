@@ -7,9 +7,9 @@
 		<style type="text/css">  
 			html{height:100%;}
 			body{height:100%;margin:0px;padding:0px;}
-			#container{margin:10px;float:left;height:100%;width: 80%;}  
-			#select{margin:10px; padding:10px 0 0 0;}
-			#selectArea{margin:10px;}
+			#container{margin:5px 5px;height:87%;}  
+			#select{margin:5px; padding:5px 0 0 0;}
+			#selectArea{margin:5px;background-color:#ccc;font-size:0.9em;}
 		</style>  
 		<script type="text/javascript" 
 		    src="http://api.map.baidu.com/api?v=2.0&ak=OQUXHOaGqzmKDZ2HfYA80SGU35yzrWcp">
@@ -27,19 +27,14 @@
 		</span>
 			
 		<div id="selectArea">
-			<input name="all_select" type="checkbox" onclick="all_select()"value="0" /><label>全选</label>
-			<input name="all_cancel" type="checkbox" value="0" /><label>全部取消</label>
 			<input name="mass_center" type="checkbox" value="0" /><label>文化馆</label>
 			<input name="library" type="checkbox" value="0" />	<label>图书馆</label>
 			<input name="museum" type="checkbox" value="0" />	<label>博物馆</label>
 			<input name="station" type="checkbox" value="0" />	<label>文化站</label>
-		</div>>
+		</div>
 		<div id="container"></div> 
 		
-		<script type="text/javascript"> 
-			function all_select(){
-
-			}
+		<script type="text/javascript">
 
 			function displayFacilities(){
 				getBoundary();
@@ -59,7 +54,7 @@
 					//map.clearOverlays();        
 					var count = rs.boundaries.length; 
 					for(var i = 0; i < count; i++){
-						var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight:2,fillColor:"none",strokeColor:"#ff0000"}); 
+						var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight:2,fillColor:"blue",strokeColor:"#ff0000"}); 
 						map.addOverlay(ply);  
 						map.setViewport(ply.getPath());
 					}                
