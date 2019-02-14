@@ -7,13 +7,15 @@
 		<style type="text/css">  
 			html{height:100%;}
 			body{height:100%;margin:0px;padding:0px;}
-			#container{margin:5px 5px;height:87%;}  
+			#container{margin:5px 5px;height:80%;}  
 			#select{margin:5px; padding:5px 0 0 0;}
-			#selectArea{margin:5px;background-color:#ccc;font-size:0.9em;}
+			#disp{margin:5px;background-color:#ccc;font-size:0.9em;height:10%;overflow-y:scroll;}
+
 		</style>  
 		<script type="text/javascript" 
 		    src="http://api.map.baidu.com/api?v=2.0&ak=OQUXHOaGqzmKDZ2HfYA80SGU35yzrWcp">
 		</script>
+	
 	</head>  
  
 	<body>  
@@ -23,6 +25,7 @@
 		<input type="button" onclick="displayFacilities()" value="显示设施">
 		<input type="button" onclick="drawMarker()" value="显示标注">
 		<input type="button" onclick="removeMarker()" value="取消标注">
+		<input type="button" onclick="readJson()" value="读取数据">
 	
 		</span>
 			
@@ -33,9 +36,9 @@
 			<input name="station" type="checkbox" value="0" />	<label>文化站</label>
 		</div>
 		<div id="container"></div> 
-		
-		<script type="text/javascript">
 
+
+		<script type="text/javascript">
 			function displayFacilities(){
 				getBoundary();
 				drawMarker();
@@ -54,7 +57,7 @@
 					//map.clearOverlays();        
 					var count = rs.boundaries.length; 
 					for(var i = 0; i < count; i++){
-						var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight:2,fillColor:"blue",strokeColor:"#ff0000"}); 
+						var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight:2,fillColor:"none",strokeColor:"#0000ff"}); 
 						map.addOverlay(ply);  
 						map.setViewport(ply.getPath());
 					}                
@@ -89,8 +92,10 @@
 			map.enableScrollWheelZoom();
 			map.addControl(new BMap.NavigationControl())
 			var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
-			map.addControl(ctrl_nav);
-	       
+			map.addControl(ctrl_nav);	       	
+	      
 		</script>  
+		<div id="disp">显示区域 </div>
+		<script src="readJson.js"></script>
 	</body>  
 </html>
