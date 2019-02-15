@@ -19,8 +19,7 @@
 
 第二步，使用python把csv文件转换成json文件。这在命令行中用一行代码即可实现。
 
-
-python -c "import csv,json;print(json.dumps(list(csv.reader(open('csv_file.csv')))))" > a.json
+`python -c "import csv,json;print(json.dumps(list(csv.reader(open('csv_file.csv')))))" > a.json`
 
 需要注意的是，python版本要2.7以上。
 
@@ -39,7 +38,7 @@ python -c "import csv,json;print(json.dumps(list(csv.reader(open('csv_file.csv')
 为了测试服务器上的效果，可使用python提供的简单HTTP服务器功能。同样，一行代码即可使用。Windows7 + Python3.x环境下，可以通过下面的命令运行：
 
 
-python -m http.server 8080
+`python -m http.server 8080`
 
 这样就可以在开发目录搭建一个简单的HTTP服务器。使用时在浏览器地址栏中输入: 本机IP:8080，即可。
 
