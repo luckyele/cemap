@@ -40,7 +40,6 @@
 
 		<script type="text/javascript">
 			function checkStatus(){
-
 				var FLAG_MASS = 1
 				var FLAG_LIB = 2
 				var FLAG_MU = 4
@@ -117,6 +116,9 @@
 			var point = new BMap.Point(117.288463,31.867939);
 			map.centerAndZoom(point,12);
 			map.enableScrollWheelZoom();
+			map.enableKeyboard();
+			
+
 			map.addControl(new BMap.NavigationControl())
 			var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
 			map.addControl(ctrl_nav);	       	
