@@ -23,7 +23,6 @@ function readJson() {
     request.onload = function() {
         var gpsText = request.response;
         var facilities = JSON.parse(gpsText);
-        console.log(facilities)
         var dispArea = document.querySelector("#disp");
         
         //map.clearOverlays();
@@ -54,7 +53,6 @@ function readJson() {
                 if (hierarchy == "市级")
                     n = 4000;
 
-
                 var circle = new BMap.Circle(new BMap.Point(gps_x, gps_y), n);
                 console.log(circle);
                 circle.setFillColor("#FF9900"); //填充颜色
@@ -65,6 +63,10 @@ function readJson() {
             dispArea.appendChild(p);
         }        
     };
+}
+
+function dispRadius(){
+                    
 }
 
 function drawMarker(x, y, f) {

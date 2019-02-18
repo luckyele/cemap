@@ -16,6 +16,7 @@
 		    src="http://api.map.baidu.com/api?v=2.0&ak=OQUXHOaGqzmKDZ2HfYA80SGU35yzrWcp">
 		</script>
 	
+		<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 	</head>  
  
 	<body>  
@@ -26,7 +27,9 @@
 		<input type="button" onclick="drawMarker()" value="显示标注">
 		<input type="button" onclick="removeMarker()" value="取消标注">
 		<input type="button" onclick="readJson()" value="读取数据">
+		<input type="button" onclick="dispRadius()" value="显示半径">
 		<input type="button" onclick="checkStatus()" value="check数据">
+		<input type="button" onclick="findWay()" value="前往场馆">
 		</span>
 			
 		<div id="selectArea">
@@ -39,6 +42,38 @@
 
 
 		<script type="text/javascript">
+			function dispRadius(){
+				
+			}
+
+			function findWay(){
+				var f = selectFrom();
+				var t = selectTo();
+				findPath(f, t);
+			}
+
+			function selectFrom(){
+				var f_gps = new BMap.Point();
+
+				return f_gps;
+			}
+
+			function selectTo(){
+				var t_gps = new BMap.Point();
+				return t_gps;
+			}
+
+			function findPath(f, t){
+				var driving = new BMap.DrivingRout(map, {
+					renderOptions: {
+						map: map
+					}
+				});
+
+				driving.search(f, t);
+				console.log(f, t);
+			}
+
 			function checkStatus(){
 				var FLAG_MASS = 1
 				var FLAG_LIB = 2
