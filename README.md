@@ -44,7 +44,7 @@
 
 ## 代码实现
 
-说代码之前，先看一下效果图。上图右侧是http服务器运行的情形。左侧是这个应用使用时的情况。
+说代码之前，先看一下效果图。
 
 界面目前比较糙，划分为三个区域：上端是操作区，中间是地图区，下端是信息显示区。
 
@@ -94,8 +94,6 @@ To test the effect on the server, you can use the simple HTTP server functionali
 This allows you to build a simple HTTP server in the development directory. When using, you can input IP: 8080 in the browser address bar.
 
 ## Code implementation
-
-On the right side of the picture above is the HTTP server running. On the left is how the application is used.
 
 At present, the interface is relatively rough, divided into three areas: the upper end is the operation area, the middle is the map area, and the lower end is the information display area.
 
