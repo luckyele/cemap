@@ -1,4 +1,5 @@
-# cemap
+# CEMAP
+
 
 
 ## 基本想法
@@ -13,7 +14,7 @@
 
 ### 数据收集与处理
 
-首先花了一些时间，把全省文化馆的百度地图坐标拾取出来，并以json文件的形式保存备用（像菜谱上的语言）。不知别人怎么做的，这里晒下笔者用的方法：
+首先把全省文化馆的百度地图坐标拾取出来，并以json文件的形式保存备用（像菜谱上的语言）。不知别人怎么做的，这里晒下笔者用的方法：
 
 第一步，先把每个场馆的信息用Excel表格整理出来，保存成csv文件。
 
@@ -27,16 +28,15 @@
 
 ### 开发环境准备
 
-建立开发目录
+**建立开发目录**
 
 先在github仓库中新增一个仓库，用于保存相关文件和代码。现在代码量还非常小，所以没有设置子目录。有兴趣的朋友可以Clone https://github.com/luckyele/cemap.git。
 
 另外提示一下，可以在手机端安装有Pocket Git，Quick Edit，QPythonL，三款APP，可支持随时随地码。
 
-测试服务器搭建
+**测试服务器搭建**
 
 为了测试服务器上的效果，可使用python提供的简单HTTP服务器功能。同样，一行代码即可使用。Windows7 + Python3.x环境下，可以通过下面的命令运行：
-
 
 `python -m http.server 8080`
 
@@ -48,8 +48,55 @@
 
 界面目前比较糙，划分为三个区域：上端是操作区，中间是地图区，下端是信息显示区。
 
-初步实现的几个功能：标注场所、标注行政区划、读取json数据，看起来还能work。现在自己已经有了一些想要增加的功能，比如，与之前写的一个爬虫结合起来，可以实现在地图直观显示各地信息。慢慢改吧。
+初步实现的几个功能：标注场所、标注行政区划、读取json数据。
 
 
-有什么好的意见建议，欢迎留言
+## Basic ideas
 
+Electronic maps need maps first. Baidu company has helped us to do a good job, you can use it directly. To use Baidu Map SDK, you need to register on its official website and get APK before you can use it. Access methods can be found on the official website.
+
+Secondly, we should be able to locate. This is a slow job. You can search and save the coordinates one by one through Baidu Map Coordinate Picking System.
+
+After the above two steps, we have the basic map and the coordinates of the venue, the positioning function will naturally come into being.
+
+
+## Preparations
+
+### Data Collection and Processing
+
+First of all, it took some time to pick up the coordinates of Baidu map in the Provincial Cultural Museum and save them in the form of JSON files (like the language on the menu). Here's the way I use:
+
+`python -c "import csv,json;print(json.dumps(list(csv.reader(open('csv_file.csv')))))" > a.json`
+
+It should be noted that the python version is more than 2.7.
+
+The third step is coding transcoding. Because there are a lot of Chinese in our CSV file, the JSON file generated according to the above method will be scrambled when we open it with some editors. To solve this problem, we use the "encoding" function provided in Notepad++ to save the "utf-8" encoding.
+
+The first step is to sort out the information of each venue with Excel form and save it as CSV file.
+
+The second step is to use Python to convert CSV files into JSON files. This can be done in one line of code on the command line.
+
+
+### Development environment preparation
+
+**Establishing Development Catalogue**
+
+Firstly, a new warehouse is added to the GitHub warehouse to store relevant documents and codes. Now the amount of code is very small, so there is no subdirectory set up. Interested friends can be Clone https://github.com/luckyele/cemap.git.
+
+In addition, you can install Pocket Git, Quick Edit, QPython L and three APPs on the mobile phone, which can support anytime, anywhere code.
+
+**Test Server Construction**
+
+To test the effect on the server, you can use the simple HTTP server functionality provided by python. Similarly, a single line of code is available. In Windows 7 + Python 3. x environment, you can run the following commands:
+
+`python -m http.server 8080`
+
+This allows you to build a simple HTTP server in the development directory. When using, you can input IP: 8080 in the browser address bar.
+
+## Code implementation
+
+On the right side of the picture above is the HTTP server running. On the left is how the application is used.
+
+At present, the interface is relatively rough, divided into three areas: the upper end is the operation area, the middle is the map area, and the lower end is the information display area.
+
+Several functions are preliminarily realized: marking places, marking administrative divisions, and reading JSON data.
