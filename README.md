@@ -46,6 +46,8 @@
 
 说代码之前，先看一下效果图。
 
+![Running](http://m.qpic.cn/psb?/b8d7e101-69b9-4c69-b733-64e88bdce5dc/E2eUIvFxWYA6pU9uUhZzJvAqNmYRFZO08P*VT9dJNpQ!/b/dDYBAAAAAAAA&bo=TwPuAgAAAAADB4I!&rf=viewer_4)
+
 界面目前比较糙，划分为三个区域：上端是操作区，中间是地图区，下端是信息显示区。
 
 初步实现的几个功能：标注场所、标注行政区划、读取json数据。
