@@ -24,19 +24,18 @@
 		输入省、直辖市或县名称：
 		<input type="text" id="districtName" style="width:80px" value="合肥市">
 		<input type="button" onclick="displayFacilities()" value="显示设施">
-		<input type="button" onclick="drawMarker()" value="显示标注">
 		<input type="button" onclick="removeMarker()" value="取消标注">
 		<input type="button" onclick="readJson()" value="读取数据">
-		<input type="button" onclick="dispRadius()" value="显示半径">
 		<input type="button" onclick="checkStatus()" value="check数据">
 		<input type="button" onclick="findWay()" value="前往场馆">
 		</span>
 			
 		<div id="selectArea">
+			<input id="select_all" type="checkbox" value="0" onclick="onClickSelectAll()" /><label>全选</label>
 			<input id="mass_center" type="checkbox" value="0" /><label>文化馆</label>
-			<input id="library" type="checkbox" value="0" />	<label>图书馆</label>
-			<input id="museum" type="checkbox" value="0" />	<label>博物馆</label>
-			<input id="station" type="checkbox" value="0" />	<label>文化站</label>
+			<input id="library" type="checkbox" value="0" /><label>图书馆</label>
+			<input id="museum" type="checkbox" value="0" /><label>博物馆</label>
+			<input id="station" type="checkbox" value="0" /><label>文化站</label>
 		</div>
 		<div id="container"></div> 
 
@@ -98,6 +97,27 @@
 				return flag;
 			}
 
+			function onClickSelectAll(){
+
+				var v1 = document.getElementById("mass_center");
+				var v2 = document.getElementById("library");
+				var v3 = document.getElementById("museum");
+				var v4 = document.getElementById("station");
+
+				if (document.getElementById("select_all").checked == true) {
+ 					v1.checked = true;
+					v2.checked = true;
+					v3.checked = true;
+					v4.checked = true;
+				}
+				else {
+					v1.checked = false;
+					v2.checked = false;
+					v3.checked = false;
+					v4.checked = false;
+				}
+		 	}
+
 
 			function displayFacilities(){
 				getBoundary();
@@ -125,28 +145,7 @@
 				});   
 			}		
 			
-			function drawMarker() {
-				var points = [
-				{name:"安徽省文化馆",point:"117.288463,31.867939"},
-				{name:"合肥市文化馆",point:"117.302516,31.733185"},
-				{name:"庐阳区文化馆",point:"117.304429,31.87101"},
-				{name:"蜀山区文化馆",point:"117.250161,31.833981"},
-				{name:"肥西县文化馆",point:"117.183038,31.718728"},
-				{name:"瑶海区文化馆",point:"117.31265,31.871389"},
-				{name:"巢湖市文化馆",point:"117.871373,31.604097"}
-				];
-
-				for (var i = 0; i < points.length; i++) {
-					x = points[i].point.split(',')[0];
-					y = points[i].point.split(',')[1];
-					var point = new BMap.Point(x, y);
-					var marker = new BMap.Marker(point);
-					marker.setLabel(new BMap.Label(points[i].name));
-					map.addOverlay(marker);
-					console.log(i+" add marker");
-				}
-			}
- 			
+		 			
 			var map = new BMap.Map("container");
 			var point = new BMap.Point(117.288463,31.867939);
 			map.centerAndZoom(point,12);
