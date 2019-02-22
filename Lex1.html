@@ -17,6 +17,7 @@
 		</script>
 	
 		<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+		<script src="annyang.min.js"></script>
 	</head>  
  
 	<body>  
@@ -28,6 +29,7 @@
 		<input type="button" onclick="readJson()" value="读取数据">
 		<input type="button" onclick="checkStatus()" value="check数据">
 		<input type="button" onclick="findWay()" value="前往场馆">
+		<input type="button" onclick="voiceInput()" value="语音输入">
 		</span>
 			
 		<div id="selectArea">
@@ -41,8 +43,22 @@
 
 
 		<script type="text/javascript">
-			function dispRadius(){
-				
+
+			
+			function voiceInput(){
+			    if(annyang) {
+			        var cmd1 = {
+			            "Open":function() { 
+			                alert("打开");
+			            }
+			        };
+			        annyang.addCommands(cmd1);
+			        console.log('voice input...')
+			        annyang.start();
+			    }
+			    else {
+			    	console.log("Speech Recognition is not supported");
+			    }
 			}
 
 			function findWay(){
@@ -143,8 +159,7 @@
 						map.setViewport(ply.getPath());
 					}                
 				});   
-			}		
-			
+			}					
 		 			
 			var map = new BMap.Map("container");
 			var point = new BMap.Point(117.288463,31.867939);

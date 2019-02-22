@@ -41,8 +41,12 @@ function readJson() {
                 map.addOverlay(circle);            //增加圆
             }                   
             dispArea.appendChild(p);
-        }        
+        }
+
+      
     };
+    
+
 }
 
 
