@@ -47,11 +47,10 @@ function readJson() {
     };
 }
 
-
 function drawMarker(x, y, f) {
     var point = new BMap.Point(x, y);
     var marker = new BMap.Marker(point);
-    marker.setTitle(f[0]+"\n"+f[4]+"\n"+f[5]);
-    map.addOverlay(marker);    
-    //console.log(point);
+    marker.setTitle(f[0] + "\n" + f[4] + "\n" + f[5]);
+    map.addOverlay(marker);
+    console.log(point);
 }

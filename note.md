@@ -1,0 +1,21 @@
+# 如何把设计稿稿还原成网页
+
+前端的工具：HTML，CSS, JavaScript
+
+据说有这样的鄙视链：ASM > C > C++ > Python > Java & C# & PHP > VB > HTML
+
+HTML决定网页框架结构，CSS决定网页样式，JavaScript决定用户交互和数据处理。
+
+拿到一个设计稿，第一步是框化设计稿，如![框化设计稿](https://upload-images.jianshu.io/upload_images/9485-5ca06d37a307fcc7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
+
+将所有元素框化后，可以着手开始写代码。顺序从最外面的框写起，不断往里写。这里有的框是关列关系，也可能是包含关系。
+
++ 1 拿到网页设计稿
++ 2 分析设计稿，找到那些现成的框
++ 3 找出那些样式重复的元素（或框）——如1级标题、2级标题、段落等
++ 4 写HTML代码，把内容盛放进框中
++ 5 写CSS代码，定义元素（或框）的样式（从大的样式特征——如框的宽度，到小的——如字体字重）
++ 6 保存代码，在浏览器中检查差距，调整代码
++ 7 重复4-6步直到还原设计稿
+
+链接：https://www.jianshu.com/p/a981158df5a8

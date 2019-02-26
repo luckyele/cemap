@@ -28,8 +28,6 @@
 		<input type="button" onclick="removeMarker()" value="取消标注">
 		<input type="button" onclick="readJson()" value="读取数据">
 		<input type="button" onclick="checkStatus()" value="check数据">
-		<input type="button" onclick="findWay()" value="前往场馆">
-		<input type="button" onclick="voiceInput()" value="语音输入">
 		</span>
 			
 		<div id="selectArea">
@@ -43,71 +41,6 @@
 
 
 		<script type="text/javascript">
-			function voiceInput(){
-				$('#disp').text('Information:');
-			    if(annyang) {
-			        var cmd1 = {
-			            "hi":function() { 
-			            	$('#disp').text('You say hi.');
-			            }
-			        };
-					
-			        annyang.addCommands(cmd1);
-			        console.log('voice input...')
-			        
-			        annyang.start();
-
-					annyang.addCallback('soundstart', function() {
-					  console.log('sound detected');
-					});
-
-					annyang.addCallback('result', function() {
-					  console.log('sound stopped');
-					});
-
-			        annyang.addCallback('resultMatch', function(userSaid, commandText, phrases) {
-					  console.log(userSaid); // sample output: 'hello'
-					  console.log(commandText); // sample output: 'hello (there)'
-					  console.log(phrases); // sample output: ['hello', 'halo', 'yellow', 'polo', 'hello kitty']
-					});
-
-					annyang.addCallback('resultNoMatch', function(phrases) {
-					  console.log("I think the user said: ", phrases[0]);
-					  console.log("But then again, it could be any of the following: ", phrases);
-					});
-			    }
-			    else {
-			    	console.log("Speech Recognition is not supported");
-			    }
-			}
-
-			function findWay(){
-				var f = selectFrom();
-				var t = selectTo();
-				findPath(f, t);
-			}
-
-			function selectFrom(){
-				var f_gps = new BMap.Point();
-
-				return f_gps;
-			}
-
-			function selectTo(){
-				var t_gps = new BMap.Point();
-				return t_gps;
-			}
-
-			function findPath(f, t){
-				var driving = new BMap.DrivingRout(map, {
-					renderOptions: {
-						map: map
-					}
-				});
-
-				driving.search(f, t);
-				console.log(f, t);
-			}
 
 			function checkStatus(){
 				var FLAG_MASS = 1
