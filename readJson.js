@@ -1,4 +1,4 @@
-
+/* Read data from JSON file */
 
 function readJson() {
     var requestURL = "/a.json";
@@ -6,14 +6,14 @@ function readJson() {
     request.open('GET', requestURL);
     request.responseType = "application/json";
     request.send();
-    
+
     //处理服务器数据
     request.onload = function() {
         var gpsText = request.response;
         var facilities = JSON.parse(gpsText);
         var dispArea = document.querySelector("#disp");
         for (var i = 1; i<facilities.length; i++) {
-            var p = document.createElement('p');            
+            var p = document.createElement('p');
             var name        = facilities[i][0];
             var id          = facilities[i][1];
             var hierarchy   = facilities[i][2];
@@ -24,9 +24,9 @@ function readJson() {
             var gps_x       = facilities[i][7].split(',')[0];
             var gps_y       = facilities[i][7].split(',')[1];
             var n = 1500;    
-            var city = document.getElementById("districtName");        
+            var city = document.getElementById("districtName");
             if (area == city.value) {
-                drawMarker(gps_x, gps_y, facilities[i]);            
+                drawMarker(gps_x, gps_y, facilities[i]);
                 p.textContent   = name + " " + gps_x +","+ gps_y;
                 if (hierarchy == "省级")
                     n = 2500;
