@@ -39,16 +39,13 @@
 		</div>
 		<div id="container"></div> 
 
-
 		<script type="text/javascript">
-
 			function checkStatus(){
 				var FLAG_MASS = 1
 				var FLAG_LIB = 2
 				var FLAG_MU = 4
 				var FLAG_ST = 8
 				var flag = 0
-
 				var v1 = document.getElementById("mass_center");
 				var v2 = document.getElementById("library");
 				var v3 = document.getElementById("museum");
@@ -106,24 +103,24 @@
 					var count = rs.boundaries.length; 
 					for(var i = 0; i < count; i++){
 						var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight:2,fillColor:"none",strokeColor:"#0000ff"}); 
-						map.addOverlay(ply);  
+						map.addOverlay(ply);
 						map.setViewport(ply.getPath());
-					}                
-				});   
-			}					
+					}
+				});
+			}
 		 			
 			var map = new BMap.Map("container");
 			var point = new BMap.Point(117.288463,31.867939);
 			map.centerAndZoom(point,12);
 			map.enableScrollWheelZoom();
 			map.enableKeyboard();
-			
 
 			map.addControl(new BMap.NavigationControl())
 			var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
-			map.addControl(ctrl_nav);	       	
+			map.addControl(ctrl_nav);
 	    </script>  
 		<div id="disp">显示区域 </div>
 		<script src="readJson.js"></script>
-	</body>  
+	</body>
 </html>
+
