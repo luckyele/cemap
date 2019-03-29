@@ -42,7 +42,6 @@ function readJson() {
             }                   
             dispArea.appendChild(p);
         }
-
       
     };
 }

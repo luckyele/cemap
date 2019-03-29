@@ -18,6 +18,7 @@
 	
 		<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 		<script src="annyang.min.js"></script>
+		<script src="readJson1.js"></script>
 	</head>  
  
 	<body>  
@@ -118,9 +119,46 @@
 			map.addControl(new BMap.NavigationControl())
 			var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
 			map.addControl(ctrl_nav);
+
+
+ 			//去除路网
+            map.setMapStyle({
+                styleJson:[
+                 {
+	                "featureType": "road",
+	                "elementType": "all",
+	                "stylers": {
+	                          "color": "#ffffff",
+	                          "visibility": "off"
+	                }
+                  },
+                  {
+                      "featureType": "building",
+                      "elementType": "all",
+                      "stylers": {
+                                "visibility": "off"
+                      }
+                  },
+                  {
+                      "featureType": "poilabel",
+                      "elementType": "all",
+                      "stylers": {
+                                "visibility": "off"
+                      }
+                  },
+                  {
+                      "featureType": "manmade",
+                      "elementType": "all",
+                      "stylers": {
+                                "visibility": "off"
+                      }
+                  },
+                ]
+            });
+
 	    </script>  
 		<div id="disp">显示区域 </div>
-		<script src="readJson.js"></script>
+		
 	</body>
 </html>
 

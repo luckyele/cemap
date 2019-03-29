@@ -6,8 +6,9 @@ import sys
 def csv2json():
 	f = open(sys.argv[1])
 	fi = csv.reader(f)
-	fo = json.dumps(list(fi))
-	print(fo)
+	
+	with open(sys.argv[1]+".json", "w", encoding='utf-8') as jf:
+		json.dumps(list(fi), jf, ensure_ascii=False)
 
 if __name__ == "__main__":
 	csv2json()
