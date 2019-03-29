@@ -1,7 +1,7 @@
 /* Read data from JSON file */
 
 function readJson() {
-    var requestURL = "/a.json";
+    var requestURL = "json/a.json";
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = "application/json";
@@ -10,6 +10,7 @@ function readJson() {
     //处理服务器数据
     request.onload = function() {
         var gpsText = request.response;
+        console.log(gpsText);
         var facilities = JSON.parse(gpsText);
         var dispArea = document.querySelector("#disp");
         for (var i = 1; i<facilities.length; i++) {
