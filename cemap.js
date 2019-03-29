@@ -1,58 +1,4 @@
-<!DOCTYPE html>  
-<html>
-	<head>  
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />  
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
-		<title>Hello, World</title>  
-		<style type="text/css">  
-			html{height:100%;}
-			body{height:100%;margin:0px;padding:0px;}
-			#title{font: 1.5em bold;text-align: center;}
-			#container{margin:5px 5px;height:80%;}  
-			#selectArea{margin:5px; padding:5px 0 0 0;align-self:center; }
-			button{
-				padding: 14px 28px;
-	 			text-align: center;
-	 			text-decoration: none;
-	 			display: inline-block;
-	 			font-size: 14px;
-	 			margin: 4px 2px;
-	 			width: 120px;
-	 			cursor: pointer;
-	 			background-color: white;
-	 			color: black;
-	 			border: 1px solid #e7e7e7;
-			}
-			
-
-		</style>  
-		<script type="text/javascript" 
-		    src="http://api.map.baidu.com/api?v=2.0&ak=OQUXHOaGqzmKDZ2HfYA80SGU35yzrWcp">
-		</script>
-	
-		<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-		<script src="annyang.min.js"></script>
-		<script src="readJson1.js"></script>
-		<script src="cemap.js"></script>
-	</head>  
- 
-	<body>  
-		<div id="title">国家公共文化服务体系示范区总览</div>
-		<div id="container"></div> 
-		<div id="buttons">
-			<button onclick="displayArea()">显示</button>  
-			<button onclick="removeMarker()">取消显示</button>  
-		</div>
-		
-		<div id="selectArea">
-			<input id="select_all" type="checkbox" value="0" onclick="onClickSelectAll()" /><label>全选</label>
-			<input id="first" type="checkbox" value="0" /><label>首批</label>
-			<input id="second" type="checkbox" value="0" /><label>第二批</label>
-			<input id="third" type="checkbox" value="0" /><label>第三批</label>
-			<input id="forth" type="checkbox" value="0" /><label>第四批</label>
-		</div>
-
-		<script type="text/javascript">
+<script type="text/javascript">
 			function displayArea(){
 			    var flags = checkStatus();
 			    $.get("json/demo_regions.json", function(data){
@@ -69,6 +15,7 @@
 			    	}
 			    });
             }
+
 
 			function checkStatus(){
 			    var FLAG_MASS = 1
@@ -120,10 +67,9 @@
 			        for(var i = 0; i < count; i++){
 			            var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight:2,fillColor:color,strokeColor:color}); 
 			            map.addOverlay(ply);
-			            //map.setViewport(ply.getPath());
+			            map.setViewport(ply.getPath());
 			        }
 			    });
-			    
 			}
 			
 			function displayFacilities(){
@@ -142,7 +88,7 @@
 			
 
 			var map = new BMap.Map("container");
-			var point = new BMap.Point(108.116861,35.969056);
+			var point = new BMap.Point(117.288463,31.867939);
 			map.centerAndZoom(point,5);
 			map.enableScrollWheelZoom();
 			map.enableKeyboard();
@@ -187,7 +133,3 @@
                 ]
             });
 	    </script>  
-				
-	</body>
-</html>
-

@@ -54,3 +54,83 @@ function drawMarker(x, y, f) {
     map.addOverlay(marker);
     console.log(point);
 }
+
+
+function displayArea(){
+                var flags = checkStatus();
+                var data = readJson();
+                
+                switch(flags) {
+                    case 1:
+                        for(var i = 0; i < data.length; i++) {
+                            console.log(data[i].time);  
+                            if(data[i].time == flags)
+                                getBoundary(data[i].city);
+                        }
+                        break;
+                    case 2:
+                        for(var i = 0; i < data.length; i++) {
+                            console.log(data[i].time);  
+                            if(data[i].time == flags)
+                                getBoundary(data[i].city);
+                        }
+                        break;
+                    case 3:
+                        for(var i = 0; i < data.length; i++) {
+                            console.log(data[i].time);  
+                            if(data[i].time == flags)
+                                getBoundary(data[i].city);
+                        }
+                        break;
+
+                    case 4:
+                        for(var i = 0; i < data.length; i++) {
+                            console.log(data[i].time);  
+                            if(data[i].time == flags)
+                                getBoundary(data[i].city);
+                        }
+                        break;
+                }
+            }
+
+            function checkStatus(){
+                var FLAG_MASS = 1
+                var FLAG_LIB = 2
+                var FLAG_MU = 4
+                var FLAG_ST = 8
+                var flag = 0
+                var v1 = document.getElementById("first");
+                var v2 = document.getElementById("second");
+                var v3 = document.getElementById("third");
+                var v4 = document.getElementById("forth");
+
+                if (v1.checked)
+                    flag |= FLAG_MASS;
+                if (v2.checked)
+                    flag |= FLAG_LIB;
+                if (v3.checked)
+                    flag |= FLAG_MU;
+                if (v4.checked)
+                    flag |= FLAG_ST;
+                console.log(flag);
+                return flag;
+            }
+
+            function onClickSelectAll(){
+                var v1 = document.getElementById("first");
+                var v2 = document.getElementById("second");
+                var v3 = document.getElementById("third");
+                var v4 = document.getElementById("forth");
+                if (document.getElementById("select_all").checked == true) {
+                    v1.checked = true;
+                    v2.checked = true;
+                    v3.checked = true;
+                    v4.checked = true;
+                }
+                else {
+                    v1.checked = false;
+                    v2.checked = false;
+                    v3.checked = false;
+                    v4.checked = false;
+                }
+            }
