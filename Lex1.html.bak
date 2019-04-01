@@ -1,0 +1,164 @@
+<!DOCTYPE html>  
+<html>
+	<head>  
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />  
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+		<title>Hello, World</title>  
+		<style type="text/css">  
+			html{height:100%;}
+			body{height:100%;margin:0px;padding:0px;}
+			#container{margin:5px 5px;height:80%;}  
+			#select{margin:5px; padding:5px 0 0 0;}
+			#disp{margin:5px;background-color:#ccc;font-size:0.9em;height:10%;overflow-y:scroll;}
+
+		</style>  
+		<script type="text/javascript" 
+		    src="http://api.map.baidu.com/api?v=2.0&ak=OQUXHOaGqzmKDZ2HfYA80SGU35yzrWcp">
+		</script>
+	
+		<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+		<script src="annyang.min.js"></script>
+		<script src="readJson1.js"></script>
+	</head>  
+ 
+	<body>  
+		<span id="select">
+		输入省、直辖市或县名称：
+		<input type="text" id="districtName" style="width:80px" value="合肥市">
+		<input type="button" onclick="displayFacilities()" value="显示设施">
+		<input type="button" onclick="removeMarker()" value="取消标注">
+		<input type="button" onclick="readJson()" value="读取数据">
+		<input type="button" onclick="checkStatus()" value="check数据">
+		</span>
+			
+		<div id="selectArea">
+			<input id="select_all" type="checkbox" value="0" onclick="onClickSelectAll()" /><label>全选</label>
+			<input id="mass_center" type="checkbox" value="0" /><label>文化馆</label>
+			<input id="library" type="checkbox" value="0" /><label>图书馆</label>
+			<input id="museum" type="checkbox" value="0" /><label>博物馆</label>
+			<input id="station" type="checkbox" value="0" /><label>文化站</label>
+		</div>
+		<div id="container"></div> 
+
+		<script type="text/javascript">
+			function checkStatus(){
+				var FLAG_MASS = 1
+				var FLAG_LIB = 2
+				var FLAG_MU = 4
+				var FLAG_ST = 8
+				var flag = 0
+				var v1 = document.getElementById("mass_center");
+				var v2 = document.getElementById("library");
+				var v3 = document.getElementById("museum");
+				var v4 = document.getElementById("station");
+
+				if (v1.checked)
+					flag |= FLAG_MASS;
+				if (v2.checked)
+					flag |= FLAG_LIB;
+				if (v3.checked)
+					flag |= FLAG_MU;
+				if (v4.checked)
+					flag |= FLAG_ST;
+				console.log(flag);
+				return flag;
+			}
+
+			function onClickSelectAll(){
+				var v1 = document.getElementById("mass_center");
+				var v2 = document.getElementById("library");
+				var v3 = document.getElementById("museum");
+				var v4 = document.getElementById("station");
+
+				if (document.getElementById("select_all").checked == true) {
+ 					v1.checked = true;
+					v2.checked = true;
+					v3.checked = true;
+					v4.checked = true;
+				}
+				else {
+					v1.checked = false;
+					v2.checked = false;
+					v3.checked = false;
+					v4.checked = false;
+				}
+		 	}
+
+			function displayFacilities(){
+				getBoundary();
+				drawMarker();
+			}
+
+			function removeMarker(){
+				var allMarkers = map.getOverlays();
+				for(var i = 0; i < allMarkers.length; i++) {
+					map.removeOverlay(allMarkers[i]);
+				}
+			}
+
+			function getBoundary(){       
+				var bdary = new BMap.Boundary();
+				var name = $("#districtName").val();
+				bdary.get(name, function(rs){       
+					//map.clearOverlays();        
+					var count = rs.boundaries.length; 
+					for(var i = 0; i < count; i++){
+						var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight:2,fillColor:"none",strokeColor:"#0000ff"}); 
+						map.addOverlay(ply);
+						map.setViewport(ply.getPath());
+					}
+				});
+			}
+		 			
+			var map = new BMap.Map("container");
+			var point = new BMap.Point(117.288463,31.867939);
+			map.centerAndZoom(point,12);
+			map.enableScrollWheelZoom();
+			map.enableKeyboard();
+
+			map.addControl(new BMap.NavigationControl())
+			var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+			map.addControl(ctrl_nav);
+
+
+ 			//去除路网
+            map.setMapStyle({
+                styleJson:[
+                 {
+	                 "featureType": "road",
+	                 "elementType": "all",
+	                 "stylers": {
+						  "color": "#ffffff",
+						  "visibility": "off"
+			          }
+                  },
+                  {
+                      "featureType": "building",
+                      "elementType": "all",
+                      "stylers": {
+                          "visibility": "off"
+                      }
+                  },
+                  {
+                      "featureType": "poilabel",
+                      "elementType": "all",
+                      "stylers": {
+                          "visibility": "off"
+                      }
+                  },
+                  {
+                      "featureType": "manmade",
+                      "elementType": "all",
+                      "stylers": {
+                          "visibility": "off"
+                      }
+                  },
+                ]
+            });
+
+	    </script>  
+		<div id="disp">显示区域 </div>
+		
+	</body>
+</html>
+

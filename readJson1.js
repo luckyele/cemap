@@ -6,19 +6,20 @@ function readJson() {
     request.open('GET', requestURL);
     request.send();
 
+    var facilities;
     //处理服务器数据
     request.onload = function() {
         var text = request.response;
-        console.log(text)
-        var facilities = JSON.parse(text);
-
+      
+        facilities = JSON.parse(text);
+		
         for (var i = 0; i<facilities.length; i++) {
             var province  = facilities[i].province;
             var city      = facilities[i].city;
             var time      = facilities[i].time;
             var txt = $("<p></p>").text(province + "," + city + "," + time);
             $("#disp").append(txt);
-         }
+        }
     };
 }
 
