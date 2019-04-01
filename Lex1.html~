@@ -23,6 +23,7 @@
 	 			color: black;
 	 			border: 1px solid #e7e7e7;
 			}
+			
 
 		</style>  
 		<script type="text/javascript" 
@@ -31,8 +32,6 @@
 	
 		<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 		<script src="annyang.min.js"></script>
-		<script src="readJson1.js"></script>
-		<script src="cemap.js"></script>
 	</head>  
  
 	<body>  
@@ -55,14 +54,14 @@
 			function displayArea(){
 			    var flags = checkStatus();
 			    $.get("json/demo_regions.json", function(data){
-			    	var flag = checkStatus();
-			    	
+			    	console.log(data);
 			    	for (var i = 0; i < data.length; i++) {
+			    		console.log(typeof(data[i].time);
 			    		switch(data[i].time) {
-			    			case '1': getBoundary(data[i].city, "blue"); break;
-			    			case '2': getBoundary(data[i].city, "yellow"); break;
-			    			case '3': getBoundary(data[i].city, "green"); break;	
-			    			case '4': getBoundary(data[i].city, "red"); break;
+			    			case 1: getBoundary(data[i].city, "blue"); break;
+			    			case 2: getBoundary(data[i].city, "yellow"); break;
+			    			case 3: getBoundary(data[i].city, "green"); break;	
+			    			case 4: getBoundary(data[i].city, "red"); break;
 			    			default	: getBoundary(data[i].city, "blue"); break;
 			    			}
 			    	}
@@ -137,8 +136,6 @@
 					map.removeOverlay(allMarkers[i]);
 				}
 			}
-
-			
 
 			var map = new BMap.Map("container");
 			var point = new BMap.Point(108.116861,35.969056);
